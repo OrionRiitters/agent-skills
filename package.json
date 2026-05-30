@@ -5,7 +5,7 @@
   "description": "Shared pi configuration: skills, extensions, prompts, themes, and settings examples.",
   "keywords": ["pi-package", "pi", "skills", "extensions", "prompts", "themes"],
   "pi": {
-    "skills": ["./anthropic", "./pi", "./orion"],
+    "skills": ["./skills"],
     "extensions": ["./extensions"],
     "prompts": ["./prompts"],
     "themes": ["./themes"]

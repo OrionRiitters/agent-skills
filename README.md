@@ -6,9 +6,9 @@ It is intended to be a central, reviewable place for configuration that can be s
 
 ## Contents
 
-- `anthropic/` — skills mirrored from [`anthropics/skills`](https://github.com/anthropics/skills)
-- `pi/` — skills mirrored from [`badlogic/pi-skills`](https://github.com/badlogic/pi-skills)
-- `orion/` — Orion's custom skills
+- `skills/anthropic/` — skills mirrored from [`anthropics/skills`](https://github.com/anthropics/skills)
+- `skills/pi/` — skills mirrored from [`badlogic/pi-skills`](https://github.com/badlogic/pi-skills)
+- `skills/orion/` — Orion's custom skills
 - `extensions/` — shared pi TypeScript extensions
 - `prompts/` — shared pi prompt templates
 - `themes/` — shared pi themes
@@ -30,7 +30,7 @@ The root `package.json` exposes skills, extensions, prompts, and themes through 
 
 ## Manual sync
 
-The `orion/pi-config-sync` skill provides an explicit git-based workflow for pulling, checking, committing, and pushing updates to this repository.
+The `skills/orion/pi-config-sync` skill provides an explicit git-based workflow for pulling, checking, committing, and pushing updates to this repository.
 
 ## Safety and attribution
 

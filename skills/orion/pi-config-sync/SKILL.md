@@ -13,7 +13,7 @@ This is an explicit, manual workflow. Do not auto-sync. Always confirm before pu
 
 Good candidates:
 
-- `skills/` or source-scoped skill directories such as `anthropic/`, `pi/`, `orion/`
+- `skills/` or source-scoped skill directories such as `skills/anthropic/`, `skills/pi/`, `skills/orion/`
 - `extensions/`
 - `prompts/`
 - `themes/`
