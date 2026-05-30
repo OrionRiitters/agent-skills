@@ -9,6 +9,8 @@ Use this skill when the user wants to store or retrieve pi configuration through
 
 This is an explicit, manual workflow. Do not auto-sync. Always confirm before pushing changes.
 
+
+
 ## Repository layout convention
 
 Shared skills in this repository live under source/owner namespaces:
