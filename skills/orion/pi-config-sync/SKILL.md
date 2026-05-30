@@ -9,6 +9,20 @@ Use this skill when the user wants to store or retrieve pi configuration through
 
 This is an explicit, manual workflow. Do not auto-sync. Always confirm before pushing changes.
 
+## Scope qualifiers
+
+Interpret skill location qualifiers exactly:
+
+- **local skill**: the skill as it exists in the current project under `.pi/skills/`.
+- **global skill**: the skill as it exists on this machine under `~/.pi/agent/skills/`.
+- **repo skill**: the skill as it exists in the `shared-pi-config` GitHub repository checkout under `skills/`.
+
+When the user refers to a skill without a `local`, `global`, or `repo` qualifier, update that skill in every place it exists: local project, global machine config, and/or the shared-pi-config repo. First discover all matching copies, then apply the same intended change to each copy that exists.
+
+When the user explicitly says `local`, update only the current project copy. When they explicitly say `global`, update only the machine-global copy. When they explicitly say `repo`, update only the shared-pi-config repository copy.
+
+Preserve the namespace path in all locations. For example, `pi-config-sync` should be checked as `orion/pi-config-sync`, `algorithmic-art` as `anthropic/algorithmic-art`, and `brave-search` as `pi/brave-search`.
+
 
 
 ## Repository layout convention
