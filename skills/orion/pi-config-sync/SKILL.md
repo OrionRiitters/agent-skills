@@ -84,12 +84,13 @@ repo/skills/orion/pi-config-sync/SKILL.md
 
 When pushing skills from local/global config back to the repo:
 
-1. Preserve the relative path under the local/global skill root.
-2. Write to the same relative path under `repo/skills/`.
-3. Do not push a namespaced local skill into a flattened repo path.
-4. If the repo contains an older flattened copy, move or replace it with the namespaced path before committing.
+1. User-authored or modified pushed skills should live under `repo/skills/orion/` unless the user explicitly asks to update a third-party namespace.
+2. Preserve the skill path below `orion/` when one already exists. For example, `.pi/skills/orion/foo` pushes to `repo/skills/orion/foo`.
+3. If a local/global skill is un-namespaced, push it under `repo/skills/orion/<skill-name>`, not directly under `repo/skills/<skill-name>`.
+4. Only push to third-party namespaces such as `repo/skills/anthropic/` or `repo/skills/pi/` when the user explicitly says they are updating that repo copy or vendored upstream content.
+5. Do not push a skill into a flattened repo path. If the repo contains an older flattened copy, move or replace it with the correct `orion/` path before committing.
 
-For example, pushing `.pi/skills/anthropic/skill-creator` must update `repo/skills/anthropic/skill-creator`, not `repo/skills/skill-creator`.
+For example, pushing `.pi/skills/skill-creator` as a user-maintained skill should update `repo/skills/orion/skill-creator`, not `repo/skills/skill-creator`. Pushing `.pi/skills/orion/pi-config-sync` updates `repo/skills/orion/pi-config-sync`. Only update `repo/skills/anthropic/skill-creator` when explicitly maintaining the vendored Anthropic skill copy.
 
 Before finishing a pull or push, check for common flattened duplicates such as `.pi/skills/skill-creator` when `repo/skills/anthropic/skill-creator` exists, and report/fix the mismatch.
 
