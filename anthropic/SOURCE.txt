@@ -1,0 +1,3 @@
+Source: https://github.com/anthropics/skills
+Commit: da20c92503b2e8ff1cf28ca81a0df4673debdbf7
+Synced: 2026-05-30
