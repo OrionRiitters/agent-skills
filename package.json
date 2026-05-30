@@ -1,0 +1,13 @@
+{
+  "name": "shared-pi-config",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Shared pi configuration: skills, extensions, prompts, themes, and settings examples.",
+  "keywords": ["pi-package", "pi", "skills", "extensions", "prompts", "themes"],
+  "pi": {
+    "skills": ["./anthropic", "./pi", "./orion"],
+    "extensions": ["./extensions"],
+    "prompts": ["./prompts"],
+    "themes": ["./themes"]
+  }
+}

@@ -36,7 +36,7 @@ Do not commit secrets:
 If the user does not provide a repository, use:
 
 ```text
-https://github.com/OrionRiitters/agent-skills.git
+https://github.com/OrionRiitters/shared-pi-config.git
 ```
 
 Default local checkout:
@@ -58,7 +58,7 @@ From this skill directory, use the helper scripts:
 Examples:
 
 ```bash
-./scripts/pull-config.sh https://github.com/OrionRiitters/agent-skills.git ~/.pi/agent/config-repo
+./scripts/pull-config.sh https://github.com/OrionRiitters/shared-pi-config.git ~/.pi/agent/config-repo
 ./scripts/status-config.sh ~/.pi/agent/config-repo
 ./scripts/push-config.sh ~/.pi/agent/config-repo "Update pi config"
 ```
@@ -71,7 +71,7 @@ Examples:
 4. If the repo is a pi package, recommend installing it with:
 
    ```bash
-   pi install git:github.com/OWNER/REPO
+   pi install git:github.com/OrionRiitters/shared-pi-config
    ```
 
 5. If loading paths manually, update `~/.pi/agent/settings.json` or project `.pi/settings.json` with the relevant resource paths.

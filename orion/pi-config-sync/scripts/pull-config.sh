@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-repo="${1:-https://github.com/OrionRiitters/agent-skills.git}"
+repo="${1:-https://github.com/OrionRiitters/shared-pi-config.git}"
 dest="${2:-$HOME/.pi/agent/config-repo}"
 
 if [[ -d "$dest/.git" ]]; then

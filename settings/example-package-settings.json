@@ -1,0 +1,6 @@
+{
+  "packages": [
+    "git:github.com/OrionRiitters/shared-pi-config"
+  ],
+  "enableSkillCommands": true
+}
