@@ -27,6 +27,19 @@ fi
 
 mkdir -p "$target_root"
 
+remove_flattened_duplicate() {
+  local rel="$1"
+  local dest="$target_root/$rel"
+  local skill_name
+  skill_name="$(basename "$rel")"
+  local flat_dest="$target_root/$skill_name"
+
+  if [[ "$flat_dest" != "$dest" && -e "$flat_dest" ]]; then
+    echo "Removing flattened duplicate: $flat_dest"
+    rm -rf "$flat_dest"
+  fi
+}
+
 copy_skill() {
   local rel="$1"
   rel="${rel#skills/}"
@@ -48,6 +61,7 @@ copy_skill() {
   mkdir -p "$(dirname "$dest")"
   rm -rf "$dest"
   cp -R "$src" "$dest"
+  remove_flattened_duplicate "$rel"
   echo "Installed: $dest"
 }
 
@@ -60,6 +74,11 @@ if [[ "$#" -eq 0 ]]; then
     rm -rf "$dest"
     mkdir -p "$(dirname "$dest")"
     cp -R "$namespace" "$dest"
+    while IFS= read -r skill_file; do
+      rel="${skill_file#"$source_root/"}"
+      rel="${rel%/SKILL.md}"
+      remove_flattened_duplicate "$rel"
+    done < <(find "$namespace" -name SKILL.md -type f)
     echo "Installed namespace: $dest"
   done
 else

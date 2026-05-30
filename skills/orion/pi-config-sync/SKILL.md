@@ -60,6 +60,39 @@ For global/user installs, preserve the same tree under:
 
 Do **not** flatten skills into `.pi/skills/<skill-name>` when pulling from this repository, because flattening loses provenance and can create name/path collisions.
 
+## Directory structure reconciliation
+
+The target skill tree must mirror the repository skill tree under `skills/`.
+
+When pulling skills from the repo into local or global pi config:
+
+1. Treat `repo/skills/` as the source root.
+2. Treat `.pi/skills/` or `~/.pi/agent/skills/` as the target root.
+3. Copy each skill to the same relative path it has under `repo/skills/`.
+4. If an older flattened copy exists at the target root, move or replace it with the namespaced copy.
+
+Examples:
+
+```text
+repo/skills/anthropic/skill-creator/SKILL.md
+→ .pi/skills/anthropic/skill-creator/SKILL.md
+→ ~/.pi/agent/skills/anthropic/skill-creator/SKILL.md
+
+repo/skills/orion/pi-config-sync/SKILL.md
+→ .pi/skills/orion/pi-config-sync/SKILL.md
+```
+
+When pushing skills from local/global config back to the repo:
+
+1. Preserve the relative path under the local/global skill root.
+2. Write to the same relative path under `repo/skills/`.
+3. Do not push a namespaced local skill into a flattened repo path.
+4. If the repo contains an older flattened copy, move or replace it with the namespaced path before committing.
+
+For example, pushing `.pi/skills/anthropic/skill-creator` must update `repo/skills/anthropic/skill-creator`, not `repo/skills/skill-creator`.
+
+Before finishing a pull or push, check for common flattened duplicates such as `.pi/skills/skill-creator` when `repo/skills/anthropic/skill-creator` exists, and report/fix the mismatch.
+
 ## What belongs in the config repo
 
 Good candidates:
