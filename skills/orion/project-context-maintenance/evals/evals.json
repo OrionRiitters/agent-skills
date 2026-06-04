@@ -1,0 +1,63 @@
+{
+  "skill_name": "project-context-maintenance",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Add a new source file src/auth/sessionStore.ts in a repo where neighboring files have .summary.md sidecars. Make sure future agents can find it.",
+      "expected_output": "Creates the source file and a matching sidecar summary using the local convention, with concise retrieval-oriented sections rather than implementation duplication.",
+      "files": [],
+      "assertions": [
+        "Checks nearby files to infer the sidecar documentation convention.",
+        "Creates a matching sidecar doc for the new source file when the project uses sidecars.",
+        "Documents purpose, exports or entry points, side effects, and relevance guidance when useful.",
+        "Keeps the sidecar concise and retrieval-oriented rather than duplicating implementation details."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Update src/payments/webhook.ts so it writes an idempotency record before processing Stripe events. There is an existing src/payments/webhook.ts.md sidecar.",
+      "expected_output": "Updates the source and updates the existing sidecar because the edit changes side effects and relevance for idempotency/payment webhook debugging.",
+      "files": [],
+      "assertions": [
+        "Reads the changed source file and its existing sidecar doc.",
+        "Recognizes that adding an idempotency write is a retrieval-relevant side effect change.",
+        "Updates the sidecar's side effects or relevant-when guidance accordingly.",
+        "Does not rewrite unrelated sidecar content unnecessarily."
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Rename src/config/loader.ts to src/config/loadConfig.ts. The project has matching file.ext.md sidecar docs.",
+      "expected_output": "Renames or moves the matching sidecar doc, updates the heading/path and obvious references, and keeps source/doc names synchronized.",
+      "files": [],
+      "assertions": [
+        "Moves or renames the sidecar doc to match the renamed source file.",
+        "Updates the sidecar heading or path from loader.ts to loadConfig.ts.",
+        "Updates obvious nearby references when present.",
+        "Does not leave an orphan sidecar for the old source path."
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "Delete src/legacy/oldExporter.ts. There is a src/legacy/oldExporter.ts.md file next to it.",
+      "expected_output": "Deletes the source and matching sidecar doc, and removes obvious references from nearby module docs if needed.",
+      "files": [],
+      "assertions": [
+        "Deletes the matching sidecar doc when deleting the source file.",
+        "Checks for obvious references in nearby module docs or indexes.",
+        "Does not leave stale documentation claiming the deleted file exists."
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "In src/components/LoginButton.tsx, change the label text from 'Log in' to 'Sign in'. The repo has sidecar docs, but this is just a copy change.",
+      "expected_output": "Makes the localized source change and skips sidecar updates because retrieval-relevant facts did not change, optionally noting the skip briefly.",
+      "files": [],
+      "assertions": [
+        "Recognizes the edit as a tiny copy change that does not affect purpose, exports, dependencies, side effects, or relevance guidance.",
+        "Does not update the sidecar doc unnecessarily.",
+        "May briefly report that sidecar maintenance was skipped because retrieval facts did not change."
+      ]
+    }
+  ]
+}
