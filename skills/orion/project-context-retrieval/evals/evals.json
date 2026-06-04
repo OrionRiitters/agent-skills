@@ -1,0 +1,69 @@
+{
+  "skill_name": "project-context-retrieval",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "I'm seeing a bug where logging out doesn't clear the session cookie. Use the repo docs/summaries if they exist to find the right files before editing.",
+      "expected_output": "Uses project/module/file docs as a first-pass index, then verifies the auth/session/logout implementation source and related tests before proposing or making edits.",
+      "files": [],
+      "assertions": [
+        "Starts with project, directory, or sidecar docs before opening source when available.",
+        "Uses targeted search terms related to logout, session, cookie, auth, and tests.",
+        "Verifies actual source before proposing or making edits.",
+        "Checks related tests, callers, routes, or middleware before finalizing the change.",
+        "Updates or flags sidecar docs if the code change affects retrieval-relevant facts."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Add a setting to the dashboard refresh interval. This repo is big, so don't read everything; figure out the relevant files first.",
+      "expected_output": "Starts from README/docs/directory summaries or sidecar docs, searches targeted terms, selects dashboard/settings/config files, verifies source, and checks relevant tests/callers.",
+      "files": [],
+      "assertions": [
+        "Narrows from high-level docs to module summaries to selected files.",
+        "Searches docs, filenames, source, and tests with dashboard/settings/refresh terms.",
+        "Avoids reading broad unrelated files solely due to proximity.",
+        "Reads selected source and related tests before editing.",
+        "Briefly reports the retrieval path when useful."
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Review the payment webhook handling. There are .summary.md files next to code files; use them to decide what source to inspect, but make sure your conclusions are grounded in code.",
+      "expected_output": "Reads high-level and sidecar summaries, prioritizes payment/webhook files, treats summaries as non-authoritative, verifies actual source and side effects, and reports any stale docs.",
+      "files": [],
+      "assertions": [
+        "Treats .summary.md files as a semantic index, not authoritative truth.",
+        "Prioritizes files whose summaries mention payment, webhook, side effects, dependencies, or relevant-when guidance.",
+        "Verifies conclusions in actual source files.",
+        "Inspects side effects such as database writes, network calls, signature verification, and idempotency where relevant.",
+        "Notes stale or contradictory documentation if discovered."
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "A stack trace mentions parseConfig in src/config/loader.ts. The sidecar doc says that file only handles defaults. Should I inspect it?",
+      "expected_output": "Does not let the sidecar doc exclude a file named in a stack trace; reads the source and uses docs only as guidance.",
+      "files": [],
+      "assertions": [
+        "Says yes: a stack trace or named symbol is sufficient reason to inspect source even if docs seem unrelated.",
+        "Explains that sidecar docs guide prioritization but must not exclude strong source evidence.",
+        "Recommends reading src/config/loader.ts and searching for parseConfig callers/tests.",
+        "Identifies the sidecar doc as potentially stale or incomplete if source contradicts it."
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "In src/components/LoginButton.tsx, change the button label from 'Log in' to 'Sign in'. This should be a tiny localized edit.",
+      "expected_output": "Uses the fast path: reads the named source file directly, avoids broad project docs/summaries unless the file reveals ambiguity, and makes or proposes the localized change with minimal extra context.",
+      "files": [],
+      "assertions": [
+        "Recognizes the task as localized because the prompt names a specific source file and simple text change.",
+        "Reads src/components/LoginButton.tsx directly before consulting broad project-level docs.",
+        "Avoids opening README, ARCHITECTURE, docs, or unrelated sidecar summaries unless the named source file makes broader context necessary.",
+        "Limits related-file inspection to nearby tests, callers, or sidecar docs only if needed for correctness.",
+        "Does not apply the hierarchical retrieval workflow mechanically when direct source inspection is cheaper."
+      ]
+    }
+  ]
+}
